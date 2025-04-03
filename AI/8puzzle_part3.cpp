@@ -1,4 +1,6 @@
 // NTOU 2025/3/20 N puzzle part 3
+//Manhattan distance, a consistent heuristic for 8-puzzle games
+//O(len*datacount) = O(n^2)
 #include <iostream> 
 #include <vector>
 #include <cmath>

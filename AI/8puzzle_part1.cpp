@@ -1,4 +1,5 @@
 //NTOU 2025/3/19 N puzzle part 1
+//Solvability decision O(datacount * n^2) 
 #include <iostream> 
 #include <vector>
 #include <cmath>
@@ -36,14 +37,8 @@ bool isSolvable(vector<int> &board,int len){
 			}
 		}	
 	}
-	if(count%2==0){
-		cout<<"YES"<<endl;
-		return true;
-	}
-	else{
-		cout<<"NO"<<endl;
-		return false;
-	}
+	count%2==0 ? cout<<"YES"<<endl : cout<<"NO"<<endl;
+	return count%2==0 ? true : false;
 }
 
 int main(){

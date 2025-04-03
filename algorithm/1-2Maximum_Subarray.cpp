@@ -22,6 +22,7 @@ int find_max_cross_subarray(vector<int> &vec,int low,int mid,int high){
 			rightsum=sum;
 		}
 	}
+	//cout<<leftsum<<" "<<rightsum<<endl;
 	return leftsum+rightsum;
 }
 
@@ -59,6 +60,7 @@ int main(){
 	int max;
 	max=max_subarray(vec,0,size-1);
 	cout<<max<<endl;
+	//find_max_cross_subarray(vec,0,(size-1)/2,size-1);
 	return 0;
 }
 /*

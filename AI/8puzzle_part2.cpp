@@ -1,4 +1,5 @@
 // NTOU 2025/3/19 N puzzle part 2
+//Successor function O(datacount * n^2) 
 #include <iostream> 
 #include <vector>
 #include <cmath>
@@ -21,48 +22,27 @@ void possibleStep(const string& puzzle,int len){
     for(i = 0; i < n; ++i){
         for(j = 0; j < n; ++j){
             matrix[i][j] = puzzle[idx++]-'0';
+            if(matrix[i][j] == 0)	{x0=i;y0=j;	}
         }
     }
-    //find '0' 's position
-	for(i = 0; i < n; i++){
-        for(j = 0; j < n; ++j){
-            if(matrix[i][j] == 0){
-            	x0=i;y0=j;
-			}
-        }
-    }
-    int step=0;//possible step count
-    if(x0==1) step+=2;
-    else step+=1;
-    if(y0==1) step+=2;
-    else step+=1;
+
+    int step=((x0==1) ?2:1)+((y0==1) ?2:1);//possible step count
     cout<<step<<endl;
-    if(x0>0){
-    	cout <<"move 0 to up"<< endl;
-    	swap(matrix[x0][y0],matrix[x0-1][y0]);
-    	printboard(matrix,n);
-    	swap(matrix[x0][y0],matrix[x0-1][y0]);
-    	
-	}
-	if(x0<n-1){
-    	cout <<"move 0 to down"<< endl;
-    	swap(matrix[x0][y0],matrix[x0+1][y0]);
-    	printboard(matrix,n);
-    	swap(matrix[x0][y0],matrix[x0+1][y0]);
-	}
-	if(y0>0){
-    	cout <<"move 0 to left"<< endl;
-    	swap(matrix[x0][y0],matrix[x0][y0-1]);
-    	printboard(matrix,n);
-		swap(matrix[x0][y0],matrix[x0][y0-1]);	
-	}
-	if(y0<n-1){
-    	cout <<"move 0 to right"<< endl;
-    	swap(matrix[x0][y0],matrix[x0][y0+1]);
-    	printboard(matrix,n);
-		swap(matrix[x0][y0],matrix[x0][y0+1]);	
-	}
-	
+    const int dx[] = {-1, 1, 0, 0};
+    const int dy[] = {0, 0, -1, 1};
+    const string directions[] = {"up", "down", "left", "right"};
+    
+    for (int dir = 0; dir < 4; dir++) {
+        int nx = x0 + dx[dir];
+        int ny = y0 + dy[dir];
+        
+        if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
+            cout << "Move 0 to " << directions[dir] << endl;
+            swap(matrix[x0][y0], matrix[nx][ny]);
+            printboard(matrix, n);
+            swap(matrix[x0][y0], matrix[nx][ny]);
+        }
+    }
     //cout<<x0<<" "<<y0<<endl; 
 }
 
