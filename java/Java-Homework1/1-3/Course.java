@@ -39,7 +39,7 @@ public class Course {
     public void addStudent(Student student) {
         if(studentList.size()<maxStudents) {
         	studentList.add(student);
-        	System.out.printf("Student %s successfully added to course %s",student.getName(),getCourseName());
+        	System.out.printf("Student %s successfully added to course %s%n",student.getName(),getCourseName());
         }
         else {
         	System.out.printf("Cannot add student %s, course %s has reached maximum capacity%n"
