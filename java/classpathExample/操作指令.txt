@@ -1,0 +1,34 @@
+﻿
+Compile:
+
+javac GetMethodExample.java
+錯誤: 未考慮引用之API(jar檔)
+
+javac -classpath .;commons-httpclient-3.0.1.jar GetMethodExample.java
+正確: 已設定classpath，加入了httpclient之jar檔
+但不方便: 未考慮自動建立與package相對應之目錄 
+
+javac -d . -classpath .;commons-httpclient-3.0.1.jar GetMethodExample.java
+正確: 此應為完整版本
+
+
+Execute:
+
+java GetMethodExample
+錯誤: 未給完整之package名稱
+
+java ntou.cs.GetMethodExample
+錯誤: 已給完整之package名稱，但沒有給定classpath(未考慮引用之API)
+
+java -classpath .;commons-httpclient-3.0.1.jar ntou.cs.GetMethodExample
+理論上正確: 已考慮compile時設定之classpath，但執行卻仍有錯誤，原因在於httpclient API還有引用其他API
+
+java -classpath .;commons-httpclient-3.0.1.jar;commons-logging-1.1.1.jar;commons-codec-1.6.jar  ntou.cs.GetMethodExample
+正確: 把httpclient API引用之API--logging、codec都放入classpath，如此便可正確執行
+
+java -classpath .;commons-httpclient-3.0.1.jar;commons-logging-1.1.1.jar;commons-codec-1.6.jar  ntou.cs.GetMethodExample > test.html
+正確: 再把結果導入到檔案中
+
+試試：
+java -classpath commons-httpclient-3.0.1.jar;commons-logging-1.1.1.jar;commons-codec-1.6.jar  ntou.cs.GetMethodExample
+會錯誤，原因是？

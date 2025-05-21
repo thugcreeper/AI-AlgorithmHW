@@ -1,0 +1,3 @@
+在這個資料夾右鍵開啟cmd
+輸入python <filename> (可用tab選擇，不用慢慢打)
+開一個cmd給client端，一個給server端
